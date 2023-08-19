@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -13,7 +14,7 @@ class User(models.Model):
 
 class Account(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    balance = models.FloatField()
+    balance = models.FloatField(validators=[MinValueValidator(0.0)])
     open_date = models.DateField()
 
     def __str__(self):
