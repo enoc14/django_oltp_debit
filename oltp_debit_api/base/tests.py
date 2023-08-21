@@ -35,6 +35,9 @@ def test_update_user(api_client, create_user):
 
     response = api_client.patch(f'/api/users/{user_id}', payload_to_update, format='json')
     assert response.status_code == 200
+    assert response.data['name'] != create_user.name
+    assert response.data['age'] != create_user.name
+    assert response.data['city'] != create_user.name
 
 
 @pytest.mark.django_db
